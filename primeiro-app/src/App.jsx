@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  //kebab case
+  // const background-color-outra-palavra;
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div style={{margin: 'auto', width: 768, backgroundColor: '#EEE', padding: 12, borderRadius: 8}}>
+      <label htmlFor='nome' style={{display: 'block', marginBottom: 4}}>
+        Nome:
+      </label>
+      <input type='text' style={{paddingTop: 8, paddingBottom: 8, borderStyle: 'hidden', outline: 'none', width: '100%', borderRadius: 8}}/>
+      <button type='button' style={{marginTop: 12, paddingTop: 8, paddingBottom: 8, backgroundColor: 'blueviolet', borderRadius: 8, width: '100%', color: 'white', cursor: 'pointer', borderStyle: 'none'}}>
+        Enviar
+      </button>
+    </div>
   )
 }
 
 export default App
+
+//pessoa que se chama Ana e tem 17 anos
+// {
+//   nome: 'Ana',
+//   idade: 17
+// }
+
+
+
+
+// function oi(nome){
+//   console.log("oi, " + nome)
+//   return nome[0]
+// }
+// console.log('Seu nome começa com ' + oi('Ana'))
+
+// //arrow functions
+// // const oi = () => {}
+// // const oi = () => {console.log('oi')}
+// // const t = 2
+// // const oi = nome => console.log ('Oi, ' + nome)
+// const dobro = n => 2 * n
+// const resultado = dobro(5)
+// oi()
