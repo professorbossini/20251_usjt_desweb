@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Component } from "react"
+import { IconField } from 'primereact/iconfield'
+import { InputIcon } from 'primereact/inputicon'
 import { InputText } from 'primereact/inputtext'
 import { Button } from 'primereact/button'
 
@@ -8,27 +10,31 @@ export default class Busca extends Component {
         termoDeBusca: ''
     }
     onTermoAlterado = (event) => {
-        console.log(event.target.value)
+        this.setState({termoDeBusca: event.target.value})
+    }
+    onFormSubmit = (event) => {
+        event.preventDefault()
+        this.props.onBuscaRealizada(this.state.termoDeBusca)
     }
 
     render(){
         return(
-            // empilhando os filhos
-            <div className="flex flex-column">
-                {/* ícone à esquerda, largura máxima */}
-                <span className="p-input-icon-left w-full">
-                    <i className="pi pi-search"/>
-                    <InputText
-                        className="w-full"
-                        onChange={this.onTermoAlterado}
-                        placeholder={this.props.dica}
+            <form onSubmit={this.onFormSubmit}>
+                <div className="flex flex-column">
+                    <IconField iconPosition="left">
+                        <InputIcon className="pi pi-search"></InputIcon>
+                        <InputText 
+                            className="w-full"
+                            value={this.state.termoDeBusca}
+                            onChange={this.onTermoAlterado}
+                            placeholder="O que quer ver?" />
+                    </IconField>
+                    <Button
+                        label='OK'
+                        className="p-button-outlined mt-2"
                     />
-                </span>
-                <Button
-                    label='OK'
-                    className="p-button-outlined mt-2"
-                />
-            </div>
+                </div>
+            </form>
         )
     }
 }
