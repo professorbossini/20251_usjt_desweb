@@ -40,5 +40,5 @@ export default class Busca extends Component {
 }
 
 Busca.defaultProps = {
-    dica: 'Digite algo que deseja ver...',
+    dica: 'Digite algo que deseja ver...'
 }
