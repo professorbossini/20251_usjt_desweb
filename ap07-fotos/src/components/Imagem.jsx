@@ -1,7 +1,7 @@
 // eslint-disable-next-line react/prop-types
-const Imagem = ({pic}) => {
+const Imagem = ({pic, imgStyle}) => {
     return (
-        <div>
+        <div className={`${imgStyle}`}>
             <img src={pic}/>
         </div>
     )
