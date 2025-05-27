@@ -1,14 +1,22 @@
+/* eslint-disable no-unused-vars */
 import axios from 'axios'
-import striptags from 'striptags'
+//import striptags from 'striptags'
 import { useEffect, useState } from 'react'
 import { IconField } from 'primereact/iconfield'
 import { InputIcon } from 'primereact/inputicon'
 import { InputText } from 'primereact/inputtext'
+import { Button } from 'primereact/button'
 
 const Busca = () => {
     const [termoDeBusca, setTermoDeBusca] = useState('React')
     const [resultados, setResultados] = useState([])
     console.log(resultados)
+    // useEffect(() => {
+    //     console.log("Causando um efeito colateral")
+    //     return () => {
+    //         console.log("Posso limpar algo deixado para trás...")
+    //     }
+    // })
     useEffect(() => {
         const fazBusca = async () => {
             const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
@@ -22,8 +30,17 @@ const Busca = () => {
             })
             setResultados(data.query.search)
         }
-        // if(termoDeBusca)
-        fazBusca()
+        if (termoDeBusca && !resultados.length){
+            fazBusca()
+        } else {
+            const timeoutID = setTimeout(() => {
+                if(termoDeBusca)
+                    fazBusca()
+            }, 1000)
+            return () => {
+                clearTimeout(timeoutID)
+            }
+        }
     }, [termoDeBusca])
 
     return (
@@ -44,6 +61,15 @@ const Busca = () => {
                         className='my-3 border border-1 border-400'>
                         <div className='border-bottom border border-1 border-400 p-3 text-center font-bold'>
                             {resultado.title}
+                            <span>
+                            <Button
+                                icon="pi pi-send"
+                                className="ml-2 p-button-rounded p-button-secondary"
+                                onClick = {() => window.open(
+                                    `https:\\en.wikipedia.org?curid=${resultado.pageid}`
+                                )}
+                                />
+                            </span>    
                         </div>
                         <div>
                             <span 
